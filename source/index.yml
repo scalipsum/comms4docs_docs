@@ -5,6 +5,10 @@ toc_footers:
 
 includes:
   - main
+  - _users
+  - _categories
+  - _phrases
+  - _faqs
   - _errors
 
 search: true
