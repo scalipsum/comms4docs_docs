@@ -25,7 +25,7 @@ under the License.
 ////////////////////
 $nav-bg: #0b1542;
 $examples-bg: #050a22;
-$code-bg: #0b1542;
+$code-bg: #0a133a;
 $code-annotation-bg: #070e2e;
 $nav-subitem-bg: #070e2e;
 $nav-active-bg: #070e2e;
@@ -66,14 +66,13 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-	font-family: 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', '微软雅黑',
-		STXihei, '华文细黑', sans-serif;
-	font-size: 13px;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 14px;
 }
 
 %header-font {
 	@extend %default-font;
-	font-weight: bold;
+	font-weight: 500;
 }
 
 %code-font {
