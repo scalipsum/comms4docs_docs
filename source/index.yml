@@ -1,18 +1,11 @@
-title: API Reference
-
-language_tabs:
-   - bash
-   - ruby
-   - python
-   - javascript
+title: Comms4Docs API Documentation
 
 toc_footers:
-   - <a href=https://github.com/center-key/node-slate>node-slate on GitHub</a>
-   - <a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a>
+  - <a href="https://github.com/scalipsum/comms4docs_api">Repository</a>
 
 includes:
-   - main
-   - _errors
+  - main
+  - _errors
 
 search: true
 

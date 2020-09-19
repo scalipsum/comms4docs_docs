@@ -1,32 +1,18 @@
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> Following the instructions from the repo, you can access the local API at:
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+```
+localhost:5000
+```
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Comms4Docs API! This is a Node.js based API used as a backend system for the Comms4Docs Mobile App as well as for the Comms4Docs [Admin Panel](https://comms4docs.co.uk).
+
+You can find the production API hosted at [https://api.comms4docs.co.uk](https://api.comms4docs.co.uk) and if you wish to run it locally, the source code can be found in this [repository](https://github.com/scalipsum/comms4docs_api) (permission to access required)
 
 # Authentication
 
 > To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```bash
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
 
 ```javascript
 const kittn = require('kittn');
