@@ -121,6 +121,95 @@ A newly created user will automatically have assigned **british accent**, **0 us
 
 ## Authenticate a user
 
+> POST /auth/login
+
+```JSON
+{
+    "email": "admin_email@gmail.com",
+    "password": "******"
+}
+```
+
+> Response
+
+```JSON
+{
+    "message": "Success! Credentials are correct.",
+    "user": {
+        "_id": "******",
+        "secret": "**********"
+    }
+}
+```
+
+> POST /auth/verify-token
+
+```JSON
+{
+    "_id": "******",
+    "secret": "**********",
+    "token": "086706"
+}
+```
+
+> Response
+
+```JSON
+{
+    "message": "Success! Logged in as admin.",
+    "admin": {
+    }
+}
+```
+
+> GET /auth/check-session
+
+```JSON
+{
+    "message": "Success! Session found!",
+    "user": {
+    }
+}
+```
+
+> GET /auth/logout
+
+```JSON
+{
+    "message": "Success! You've been logged out."
+}
+```
+
+`Access: Everyone`
+
+As mentioned in the [Authentication](/#authentication), there are 2 user types that can authenticate: **admin** and **customer**.
+
+### Admin
+
+If the account if of an **admin type**, the user must go through 2 levels of authentication: **Email & Password** and **6-Digit Phone Code**. The Token will not be created unless both requirements are passed.
+
+Once the first level of encryption is passed, the **user id** and a **secret** are sent as a response, both being needed in the next level.
+
+The second level of encryption is what will create and store the Token in the database. In order to pass 3 things are needed:
+
+- User ID
+- Secret
+- Phone Code
+
+The Phone Code is generated using an Authenticator app on Android or iOS by firstly generating a **QR Code** with the link passed on user registration and then scanning it in the app. The 6 digit code is refreshed once at 30 seconds.
+
+### Customer
+
+Customers are logged in from the clients using only their **Email** and **Password**. If both are correct, a session token is generated and stored in the database for **one year**. After that, a re-login is necessary.
+
+### Session Check
+
+To check if there is a session for the current user, a simple `POST` request to the server will suffice.
+
+### Logout
+
+Once a logout request is made, the server will search for the current session, will destroy it and also delete the record from the database.
+
 ## Get all users
 
 ## Get last week users
