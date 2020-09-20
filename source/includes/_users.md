@@ -212,64 +212,171 @@ Once a logout request is made, the server will search for the current session, w
 
 ## Get all users
 
+> GET /users/
+
+```JSON
+{
+    "message": "Success! All users fetched!",
+    "users": [
+        {},
+        {},
+        {}
+    ]
+}
+```
+
+`Access: Admin`
+
+Query to get information about all the users stored in the database.
+
 ## Get last week users
+
+> GET /users/lastweek
+
+```JSON
+{
+    "stats": [
+        {
+            "date": "2020-09-14T23:00:00.000Z",
+            "users": 4
+        },
+        {
+            "date": "2020-09-15T23:00:00.000Z",
+            "users": 4
+        },
+        {
+            "date": "2020-09-16T23:00:00.000Z",
+            "users": 4
+        },
+        {
+            "date": "2020-09-17T23:00:00.000Z",
+            "users": 4
+        },
+        {
+            "date": "2020-09-18T23:00:00.000Z",
+            "users": 4
+        },
+        {
+            "date": "2020-09-19T23:00:00.000Z",
+            "users": 4
+        },
+        {
+            "date": "2020-09-20T23:00:00.000Z",
+            "users": 5
+        }
+    ]
+}
+```
+
+`Access: Admin`
+
+Shows the **day-to-day** total number of users registered between today and 7 days ago.
+
+This can be useful for showing a growth graph in the client side.
 
 ## Get a specific user
 
+> GET /users/:id
+
+```JSON
+{
+    "message": "Success! Single Phrase fetched!",
+    "user": {
+        "usage_history": 39997,
+        "subscription": "free",
+        "role": "customer",
+        "_id": "******",
+        "fav_phrases": [
+            {
+                "_id": "******",
+                "category_id": "******",
+                "body": "So, in a typical week how often do you go out to the pub would you say?",
+                "createdAt": "2020-08-10T17:56:49.297Z",
+                "updatedAt": "2020-08-30T09:48:17.724Z"
+            }
+        ],
+        "name": "App user 1",
+        "email": "appuser@gmail.com",
+        "last_active": "2020-08-30T10:56:21.990Z",
+        "password": "******",
+        "grade": "5",
+        "speciality": "Internal Medicine",
+        "tts_accent": {
+            "label": "English - United Kingdom",
+            "value": "en-GB"
+        },
+        "secret": {
+            "ascii": "******",
+            "otpauth_url": "******"
+        },
+        "createdAt": "2020-08-05T11:53:12.213Z",
+        "updatedAt": "2020-08-30T10:56:22.945Z",
+        "__v": 495
+    }
+}
+```
+
+`Access: Admin`
+
+Get all the stored information about a specific user.
+
+<aside class="notice">
+This will also retrieve all the user's favorite Phrases.
+</aside>
+
+In order for a request to be successful, a **valid stored user id** must be added as a parameter.
+
 ## Update a specific user
+
+> PUT /users/:id
+
+```JSON
+{
+    "name": "John Doe"
+}
+```
+
+> Response
+
+```JSON
+{
+    "message": "Success! User updated",
+    "user": {
+    }
+}
+```
+
+`Access: Authenticated User`
+
+There are **2 ways** a user can be updated:
+
+1. By being **logged in as himself** and updating its own information
+2. Information is being updated **by an Admin**
+
+Each field can be updated individually so it is only necessary to be passed a single field in order for a user to be updated.
+
+<aside class="notice">
+Fields sent in the updated body must comply with all the Validation rules set in the Model.
+</aside>
+
+In order for a request to be successful, a **valid stored user id** must be added as a parameter.
+
+To add or remove a phrase from favorites, jump to [this chapter]().
 
 ## Delete a specific user
 
-> The above command returns JSON structured like this:
+> DELETE /users/:id
 
 ```json
-[
-	{
-		"id": 1,
-		"name": "Fluffums",
-		"breed": "calico",
-		"fluffiness": 6,
-		"cuteness": 7
-	},
-	{
-		"id": 2,
-		"name": "Max",
-		"breed": "unknown",
-		"fluffiness": 5,
-		"cuteness": 10
-	}
-]
+{
+	"message": "Success! User deleted!"
+}
 ```
 
-This endpoint retrieves all kittens.
+Deleting a specific user means that the record associated to that **user id** will be **forever** deleted from the database.
 
-### HTTP Request
+With this action, **all the saved favorite Phrases will be deleted**.
 
-`GET https://example.com/api/kittens`
+If the user is **currently logged in**, first, the session stored in the database is deleted and only then the whole user object.
 
-### Query Parameters
-
-| Parameter    | Default | Description                                                                      |
-| ------------ | ------- | -------------------------------------------------------------------------------- |
-| include_cats | false   | If set to true, the result will also include cats.                               |
-| available    | true    | If set to false, the result will include kittens that have already been adopted. |
-
-<aside class=success>
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-This endpoint retrieves a specific kitten.
-
-<aside class=warning>
-Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.
-</aside>
-
-### HTTP Request (with ID)
-
-`GET https://example.com/kittens/<ID>`
-
-### URL Parameters
-
-| Parameter | Description                      |
-| --------- | -------------------------------- |
-| ID        | The ID of the kitten to retrieve |
+In order for a request to be successful, a **valid stored user id** must be added as a parameter.
