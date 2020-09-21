@@ -108,12 +108,14 @@ A newly created user will automatically have assigned **british accent**, **0 us
 ### User
 
 `name` - alphanumeric value \
-`email` - unique alphanumeric with @ and . \
+`email` - **unique** alphanumeric with @ and . \
 `password` - min length 6, at least one lower case and an uppercase
 `usage_history` - integers \
 `subscription` - enum value \
 `grade` - alphanumerics and underscore \
 `role` - enum value
+
+The password will be hashed and salted, and is never stored in plain text.
 
 ### Fav Phrase
 
@@ -229,6 +231,8 @@ Once a logout request is made, the server will search for the current session, w
 
 Query to get information about all the users stored in the database.
 
+The results are sent as an array of objects.
+
 ## Get last week users
 
 > GET /users/lastweek
@@ -273,6 +277,8 @@ Query to get information about all the users stored in the database.
 Shows the **day-to-day** total number of users registered between today and 7 days ago.
 
 This can be useful for showing a growth graph in the client side.
+
+An array of objects is sent back, each object containing a date and the total number of users from that date.
 
 ## Get a specific user
 
@@ -326,6 +332,8 @@ This will also retrieve all the user's favorite Phrases.
 
 In order for a request to be successful, a **valid stored user id** must be added as a parameter.
 
+Each user is stored and sent back as an object type.
+
 ## Update a specific user
 
 > PUT /users/:id
@@ -346,7 +354,7 @@ In order for a request to be successful, a **valid stored user id** must be adde
 }
 ```
 
-`Access: Authenticated User`
+`Access: User`
 
 There are **2 ways** a user can be updated:
 
@@ -373,6 +381,8 @@ To add or remove a phrase from favorites, jump to [this chapter]().
 }
 ```
 
+`Access: User`
+
 Deleting a specific user means that the record associated to that **user id** will be **forever** deleted from the database.
 
 With this action, **all the saved favorite Phrases will be deleted**.
@@ -380,3 +390,5 @@ With this action, **all the saved favorite Phrases will be deleted**.
 If the user is **currently logged in**, first, the session stored in the database is deleted and only then the whole user object.
 
 In order for a request to be successful, a **valid stored user id** must be added as a parameter.
+
+**Any logged in admin** is also empowered to delete all the information about any user.
