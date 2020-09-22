@@ -25,7 +25,7 @@
 | `category_id` | ID        | ✔️       |
 | `body`        | String    | ✔️       |
 
-### subscription enum
+**subscription enum**
 
 | Value     |
 | --------- |
@@ -103,7 +103,7 @@ A successful request will create a record in the database, but <b>not</b> a user
 
 A newly created user will automatically have assigned **british accent**, **0 usage history**, **customer role**, **free subscription**, **last active date**, **an ascii secret and a qr code url** that can be used within an `<img>` tag.
 
-### Validation
+**Validation**
 
 ### User
 

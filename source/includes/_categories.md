@@ -63,7 +63,7 @@ If a category is `premium` all the phrases associated with it are by definition 
 
 Each category has an `optional` **conversation** associated to it. A conversation is formed of an image, and audio file and written transcript. Therefore, `conversation_audio` & `conversation_body` are fields that accept a file.
 
-### Validation
+**Validation**
 
 ### Category
 
@@ -167,7 +167,7 @@ In the case where a file is updated by an Admin, (i.e. conversation_image, conve
 
 All updated fields sent in the body must comply with the Validation rules set in the Model / Controller.
 
-### Validation
+**Validation**
 
 `title` - **unique** \
 `subscription` - enum value \

@@ -39,7 +39,7 @@ Although the structure is very simplistic, a phrase is the core piece of content
 
 To create a phrase it is only necessary to pass a `body` inside the `POST` request and a **valid** `category_id` which will be associated to.
 
-### Validation
+**Validation**
 
 In the case of phrases, the validation is formed only from the types of fields passed.
 

@@ -3,24 +3,20 @@
    <head>
       <meta charset=utf-8>
       <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
-      <title>API Reference</title>
+      <title>Comms4Docs API Documentation</title>
       <link rel=icon href=images/bookmark.png>
       <link href=stylesheets/screen.css rel=stylesheet media=screen>
       <link href=stylesheets/print.css rel=stylesheet media=print>
       <link href=stylesheets/highlight-monokai.css rel=stylesheet media=screen,print>
       <script src=javascripts/all.js></script>
    </head>
-   <body class="" data-languages="[&#34;bash&#34;,&#34;ruby&#34;,&#34;python&#34;,&#34;javascript&#34;]">
+   <body class="" data-languages="[]">
       <a href=# id=nav-button>
          <span>NAV <img alt=navbar class=image-navbar src=images/navbar.png></span>
       </a>
       <div class=tocify-wrapper>
          <img alt=logo class=image-logo src=images/logo.png>
          <div class=lang-selector>
-            <a href=# data-language-name="bash">bash</a>
-            <a href=# data-language-name="ruby">ruby</a>
-            <a href=# data-language-name="python">python</a>
-            <a href=# data-language-name="javascript">javascript</a>
          </div>
          <div class=search>
             <input type=text class=search id=input-search placeholder="Search">
@@ -28,200 +24,948 @@
          <ul class=search-results></ul>
          <div id=toc></div>
          <ul class=toc-footer>
-            <li><a href=https://github.com/center-key/node-slate>node-slate on GitHub</a></li>
-            <li><a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a></li>
+            <li><a href="https://github.com/scalipsum/comms4docs_api">Repository</a></li>
          </ul>
       </div>
       <div class=page-wrapper>
          <div class=dark-box></div>
          <div class=content>
             <h1 id="introduction">Introduction</h1>
-            <p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-            <p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-            <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+            <blockquote>
+               <p>Following the instructions from the repo, you can access the local API at:</p>
+            </blockquote>
+            <pre class="highlight "><code>localhost:<span class="hljs-number">5000</span></code></pre>
+            <p>Welcome to the Comms4Docs API! This is a Node.js based API used as a backend system for the Comms4Docs Mobile App as well as for the Comms4Docs <a href="https://comms4docs.co.uk">Admin Panel</a>.</p>
+            <p>You can find the production API hosted at <a href="https://api.comms4docs.co.uk">https://api.comms4docs.co.uk</a> and if you wish to run it locally, the source code can be found in this <a href="https://github.com/scalipsum/comms4docs_api">repository</a> (permission to access required)</p>
             <h1 id="authentication">Authentication</h1>
             <blockquote>
-               <p>To authorize, use this code:</p>
-            </blockquote>
-            <pre class="highlight ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;kittn&#x27;</span>
-
-api = Kittn::APIClient.authorize!(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>)</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> kittn
-
-api = kittn.authorize(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>)</code></pre><pre class="highlight bash"><code><span class="hljs-comment"># With shell, you can just pass the correct header with each request</span>
-curl <span class="hljs-string">&quot;api_endpoint_here&quot;</span>
-  -H <span class="hljs-string">&quot;Authorization: meowmeowmeow&quot;</span></code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">const</span> kittn = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;kittn&#x27;</span>);
-
-<span class="hljs-keyword">let</span> api = kittn.authorize(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>);</code></pre>
-            <blockquote>
-               <p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-            </blockquote>
-            <p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="https://example.com/developers">developer portal</a>.</p>
-            <p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-            <p><code>Authorization: meowmeowmeow</code></p>
-            <aside class=notice> You must replace <code>meowmeowmeow</code> with your personal API key. </aside>
-            <h1 id="kittens">Kittens</h1>
-            <h2 id="get-all-kittens">Get All Kittens</h2>
-            <pre class="highlight ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;kittn&#x27;</span>
-
-api = Kittn::APIClient.authorize!(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>)
-api.kittens.get</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> kittn
-
-api = kittn.authorize(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>)
-api.kittens.get()</code></pre><pre class="highlight bash"><code>curl <span class="hljs-string">&quot;https://example.com/api/kittens&quot;</span>
-  -H <span class="hljs-string">&quot;Authorization: meowmeowmeow&quot;</span></code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">const</span> kittn = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;kittn&#x27;</span>);
-
-<span class="hljs-keyword">let</span> api = kittn.authorize(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>);
-<span class="hljs-keyword">let</span> kittens = api.kittens.get();</code></pre>
-            <blockquote>
-               <p>The above command returns JSON structured like this:</p>
-            </blockquote>
-            <pre class="highlight json"><code>[
-   {
-      <span class="hljs-attr">&quot;id&quot;</span>:         <span class="hljs-number">1</span>,
-      <span class="hljs-attr">&quot;name&quot;</span>:       <span class="hljs-string">&quot;Fluffums&quot;</span>,
-      <span class="hljs-attr">&quot;breed&quot;</span>:      <span class="hljs-string">&quot;calico&quot;</span>,
-      <span class="hljs-attr">&quot;fluffiness&quot;</span>: <span class="hljs-number">6</span>,
-      <span class="hljs-attr">&quot;cuteness&quot;</span>:   <span class="hljs-number">7</span>
-   },
-   {
-      <span class="hljs-attr">&quot;id&quot;</span>:         <span class="hljs-number">2</span>,
-      <span class="hljs-attr">&quot;name&quot;</span>:       <span class="hljs-string">&quot;Max&quot;</span>,
-      <span class="hljs-attr">&quot;breed&quot;</span>:      <span class="hljs-string">&quot;unknown&quot;</span>,
-      <span class="hljs-attr">&quot;fluffiness&quot;</span>: <span class="hljs-number">5</span>,
-      <span class="hljs-attr">&quot;cuteness&quot;</span>:   <span class="hljs-number">10</span>
-   }
-]</code></pre>
-            <p>This endpoint retrieves all kittens.</p>
-            <h3 id="http-request">HTTP Request</h3>
-            <p><code>GET https://example.com/api/kittens</code></p>
-            <h3 id="query-parameters">Query Parameters</h3>
-            <table>
-               <thead>
-                  <tr>
-                     <th>Parameter</th>
-                     <th>Default</th>
-                     <th>Description</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>include_cats</td>
-                     <td>false</td>
-                     <td>If set to true, the result will also include cats.</td>
-                  </tr>
-                  <tr>
-                     <td>available</td>
-                     <td>true</td>
-                     <td>If set to false, the result will include kittens that have already been adopted.</td>
-                  </tr>
-               </tbody>
-            </table>
-            <aside class=success> Remember — a happy kitten is an authenticated kitten! </aside>
-            <h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-            <pre class="highlight ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;kittn&#x27;</span>
-
-api = Kittn::APIClient.authorize!(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>)
-api.kittens.get(<span class="hljs-number">2</span>)</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> kittn
-
-api = kittn.authorize(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>)
-api.kittens.get(<span class="hljs-number">2</span>)</code></pre><pre class="highlight bash"><code>curl <span class="hljs-string">&quot;https://example.com/api/kittens/2&quot;</span>
-  -H <span class="hljs-string">&quot;Authorization: meowmeowmeow&quot;</span></code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">const</span> kittn = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;kittn&#x27;</span>);
-
-<span class="hljs-keyword">let</span> api = kittn.authorize(<span class="hljs-string">&#x27;meowmeowmeow&#x27;</span>);
-<span class="hljs-keyword">let</span> max = api.kittens.get(<span class="hljs-number">2</span>);</code></pre>
-            <blockquote>
-               <p>The above command returns JSON structured like this:</p>
+               <p>Example of a successfully set auth cookie:</p>
             </blockquote>
             <pre class="highlight json"><code>{
-   <span class="hljs-attr">&quot;id&quot;</span>:         <span class="hljs-number">2</span>,
-   <span class="hljs-attr">&quot;name&quot;</span>:       <span class="hljs-string">&quot;Max&quot;</span>,
-   <span class="hljs-attr">&quot;breed&quot;</span>:      <span class="hljs-string">&quot;unknown&quot;</span>,
-   <span class="hljs-attr">&quot;fluffiness&quot;</span>: <span class="hljs-number">5</span>,
-   <span class="hljs-attr">&quot;cuteness&quot;</span>:   <span class="hljs-number">10</span>
-}</code></pre>
-            <p>This endpoint retrieves a specific kitten.</p>
-            <aside class=warning> Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code. </aside>
-            <h3 id="http-request-with-id">HTTP Request (with ID)</h3>
-            <p><code>GET https://example.com/kittens/&lt;ID&gt;</code></p>
-            <h3 id="url-parameters">URL Parameters</h3>
+    _id: &quot;****&quot;,
+    expires: 2020-09-20T09:59:59.482+00:00,
+    session: &quot;{&quot;cookie&quot;:{&quot;originalMaxAge&quot;:86400000,&quot;expires&quot;:&quot;2020-09-20T09:54:00.592Z&quot;,&quot;httpOnly&quot;:true,&quot;path&quot;:&quot;/&quot;,&quot;sameSite&quot;:false},&quot;passport&quot;:{&quot;user&quot;:&quot;****&quot;}}
+}
+
+</code></pre>
+            <p>Comms4Docs uses 2 types of authentication:</p>
+            <ul>
+               <li><strong>Email</strong> and <strong>Password</strong> for the <strong>app users</strong></li>
+               <li><strong>2 Factor Authentication</strong> for the admin panel (<strong>Email</strong>, <strong>Password</strong>, <strong>6-digit phone code</strong>)</li>
+            </ul>
+            <p>Both of the auth systems are based on <a href="http://www.passportjs.org/">Passport.js</a> in conjunction with the <a href="http://www.passportjs.org/packages/passport-local/">local strategy</a>.</p>
+            <p>Each Session is maintained via an unique Cookie Token generated by Passport which is based on serializing and deserializing the according user. In order to maintain multiple sessions in tandem, they are stored securely in the database, <strong>not</strong> in the Local Storage.</p>
+            <p><code>Each auth cookie lifetime is set for a year.</code></p>
+            <p>The <strong>2 Factor Authentication</strong> is made possible using 3 levels of encryption:</p>
+            <ul>
+               <li><strong>QR Code Token</strong> (generated when a user creates an account)</li>
+               <li><strong>an ascii token</strong> (generated once the admin user confirms the email and password)</li>
+               <li><strong>a 6-digit phone code</strong> (generated by scanning the qr code)</li>
+            </ul>
+            <aside class=notice> The 6-digit phone code is generated within an Authenticator app and is renewed once at 30 seconds. </aside>
+            <h1 id="users">Users</h1>
+            <h2 id="user-model">User Model</h2>
             <table>
                <thead>
                   <tr>
-                     <th>Parameter</th>
-                     <th>Description</th>
+                     <th>Field</th>
+                     <th>Data Type</th>
+                     <th>Required</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
+                     <td><code>_id</code></td>
                      <td>ID</td>
-                     <td>The ID of the kitten to retrieve</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>name</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>email</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>password</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>tts_accent</code></td>
+                     <td>Object</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>usage_history</code></td>
+                     <td>Number</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>subscription</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>last_active</code></td>
+                     <td>Date</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>grade</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>speciality</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>fav_phrases</code></td>
+                     <td>Array</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>role</code></td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>secret</code></td>
+                     <td>Object</td>
+                     <td></td>
                   </tr>
                </tbody>
             </table>
-            <h1 id="errors">Errors</h1>
-            <aside class=error> This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s front matter. Files are included in the order listed. </aside>
-            <p>The Kittn API uses the following error codes:</p>
+            <h3 id="fav_phrase-model">fav_phrase Model</h3>
             <table>
                <thead>
                   <tr>
-                     <th>Error Code</th>
+                     <th>Field</th>
+                     <th>Data Type</th>
+                     <th>Required</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>category_id</code></td>
+                     <td>ID</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>body</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><strong>subscription enum</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Value</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>free</code></td>
+                  </tr>
+                  <tr>
+                     <td><code>premium</code></td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><code>DEFAULT: &#39;free&#39;</code></p>
+            <h3 id="role-enum">role enum</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Value</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>customer</code></td>
+                  </tr>
+                  <tr>
+                     <td><code>admin</code></td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><code>DEFAULT: &#39;customer&#39;</code></p>
+            <h3 id="usage-history">usage history</h3>
+            <p><code>DEFAULT: &#39;0&#39; (seconds)</code></p>
+            <h2 id="create-a-new-user">Create a new user</h2>
+            <blockquote>
+               <p>POST /users/register</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Gavin Belson&quot;</span>,
+    <span class="hljs-attr">&quot;email&quot;</span>: <span class="hljs-string">&quot;gavinbelson@gmail.com&quot;</span>,
+    <span class="hljs-attr">&quot;password&quot;</span>: <span class="hljs-string">&quot;********&quot;</span>,
+    <span class="hljs-attr">&quot;grade&quot;</span>: <span class="hljs-string">&quot;4&quot;</span>,
+    <span class="hljs-attr">&quot;speciality&quot;</span>: <span class="hljs-string">&quot;Internal medicine&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! New user created.&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+        <span class="hljs-attr">&quot;usage_history&quot;</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">&quot;subscription&quot;</span>: <span class="hljs-string">&quot;free&quot;</span>,
+        <span class="hljs-attr">&quot;role&quot;</span>: <span class="hljs-string">&quot;customer&quot;</span>,
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f67bc4097e4c843b00b9bf7&quot;</span>,
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Gavin Belson&quot;</span>,
+        <span class="hljs-attr">&quot;email&quot;</span>: <span class="hljs-string">&quot;gavinbelson@gmail.com&quot;</span>,
+        <span class="hljs-attr">&quot;password&quot;</span>: <span class="hljs-string">&quot;$2a$10$ZrZAz0pCG9LmqgESWwQaRuSkrUopmS9Hj4mgO2l4Yy6Qf45ABIwFG&quot;</span>,
+        <span class="hljs-attr">&quot;tts_accent&quot;</span>: {
+            <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;English - United Kingdom&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;en-GB&quot;</span>
+        },
+        <span class="hljs-attr">&quot;last_active&quot;</span>: <span class="hljs-string">&quot;2020-09-20T20:32:00.715Z&quot;</span>,
+        <span class="hljs-attr">&quot;grade&quot;</span>: <span class="hljs-string">&quot;4&quot;</span>,
+        <span class="hljs-attr">&quot;speciality&quot;</span>: <span class="hljs-string">&quot;Internal medicine&quot;</span>,
+        <span class="hljs-attr">&quot;secret&quot;</span>: {
+            <span class="hljs-attr">&quot;ascii&quot;</span>: <span class="hljs-string">&quot;.!4Isx#^qIN#l{%cQ8v,m&lt;awDySrWywX&quot;</span>,
+            <span class="hljs-attr">&quot;otpauth_url&quot;</span>: <span class="hljs-string">&quot;otpauth://totp/Comms4Docs?secret=FYQTISLTPARV44KJJYRWY6ZFMNITQ5RMNU6GC52EPFJXEV3ZO5MA&quot;</span>
+        },
+        <span class="hljs-attr">&quot;fav_phrases&quot;</span>: [],
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-09-20T20:32:00.720Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-09-20T20:32:00.720Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: Everyone</code></p>
+            <p>User creation requires a <code>POST</code> request with a body passed that contains a minimum of all required fields in the model.</p>
+            <aside class="notice"> A successful request will create a record in the database, but <b>not</b> a user session. </aside>
+            <p>A newly created user will automatically have assigned <strong>british accent</strong>, <strong>0 usage history</strong>, <strong>customer role</strong>, <strong>free subscription</strong>, <strong>last active date</strong>, <strong>an ascii secret and a qr code url</strong> that can be used within an <code>&lt;img&gt;</code> tag.</p>
+            <p><strong>Validation</strong></p>
+            <h3 id="user">User</h3>
+            <p><code>name</code> - alphanumeric value <br><code>email</code> - <strong>unique</strong> alphanumeric with @ and . <br><code>password</code> - min length 6, at least one lower case and an uppercase <code>usage_history</code> - integers <br><code>subscription</code> - enum value <br><code>grade</code> - alphanumerics and underscore <br><code>role</code> - enum value</p>
+            <p>The password will be hashed and salted, and is never stored in plain text.</p>
+            <h3 id="fav-phrase">Fav Phrase</h3>
+            <p><code>category_id</code> - valid category id</p>
+            <h2 id="authenticate-a-user">Authenticate a user</h2>
+            <blockquote>
+               <p>POST /auth/login</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;email&quot;</span>: <span class="hljs-string">&quot;admin_email@gmail.com&quot;</span>,
+    <span class="hljs-attr">&quot;password&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Credentials are correct.&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+        <span class="hljs-attr">&quot;secret&quot;</span>: <span class="hljs-string">&quot;**********&quot;</span>
+    }
+}</code></pre>
+            <blockquote>
+               <p>POST /auth/verify-token</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+    <span class="hljs-attr">&quot;secret&quot;</span>: <span class="hljs-string">&quot;**********&quot;</span>,
+    <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;086706&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Logged in as admin.&quot;</span>,
+    <span class="hljs-attr">&quot;admin&quot;</span>: {
+    }
+}</code></pre>
+            <blockquote>
+               <p>GET /auth/check-session</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Session found!&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+    }
+}</code></pre>
+            <blockquote>
+               <p>GET /auth/logout</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! You&#x27;ve been logged out.&quot;</span>
+}</code></pre>
+            <p><code>Access: Everyone</code></p>
+            <p>As mentioned in the <a href="/#authentication">Authentication</a>, there are 2 user types that can authenticate: <strong>admin</strong> and <strong>customer</strong>.</p>
+            <h3 id="admin">Admin</h3>
+            <p>If the account if of an <strong>admin type</strong>, the user must go through 2 levels of authentication: <strong>Email &amp; Password</strong> and <strong>6-Digit Phone Code</strong>. The Token will not be created unless both requirements are passed.</p>
+            <p>Once the first level of encryption is passed, the <strong>user id</strong> and a <strong>secret</strong> are sent as a response, both being needed in the next level.</p>
+            <p>The second level of encryption is what will create and store the Token in the database. In order to pass 3 things are needed:</p>
+            <ul>
+               <li>User ID</li>
+               <li>Secret</li>
+               <li>Phone Code</li>
+            </ul>
+            <p>The Phone Code is generated using an Authenticator app on Android or iOS by firstly generating a <strong>QR Code</strong> with the link passed on user registration and then scanning it in the app. The 6 digit code is refreshed once at 30 seconds.</p>
+            <h3 id="customer">Customer</h3>
+            <p>Customers are logged in from the clients using only their <strong>Email</strong> and <strong>Password</strong>. If both are correct, a session token is generated and stored in the database for <strong>one year</strong>. After that, a re-login is necessary.</p>
+            <h3 id="session-check">Session Check</h3>
+            <p>To check if there is a session for the current user, a simple <code>POST</code> request to the server will suffice.</p>
+            <h3 id="logout">Logout</h3>
+            <p>Once a logout request is made, the server will search for the current session, will destroy it and also delete the record from the database.</p>
+            <h2 id="get-all-users">Get all users</h2>
+            <blockquote>
+               <p>GET /users/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! All users fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;users&quot;</span>: [
+        {},
+        {},
+        {}
+    ]
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Query to get information about all the users stored in the database.</p>
+            <p>The results are sent as an array of objects.</p>
+            <h2 id="get-last-week-users">Get last week users</h2>
+            <blockquote>
+               <p>GET /users/lastweek</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;stats&quot;</span>: [
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-14T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">4</span>
+        },
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-15T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">4</span>
+        },
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-16T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">4</span>
+        },
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-17T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">4</span>
+        },
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-18T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">4</span>
+        },
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-19T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">4</span>
+        },
+        {
+            <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;2020-09-20T23:00:00.000Z&quot;</span>,
+            <span class="hljs-attr">&quot;users&quot;</span>: <span class="hljs-number">5</span>
+        }
+    ]
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Shows the <strong>day-to-day</strong> total number of users registered between today and 7 days ago.</p>
+            <p>This can be useful for showing a growth graph in the client side.</p>
+            <p>An array of objects is sent back, each object containing a date and the total number of users from that date.</p>
+            <h2 id="get-a-specific-user">Get a specific user</h2>
+            <blockquote>
+               <p>GET /users/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Single Phrase fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+        <span class="hljs-attr">&quot;usage_history&quot;</span>: <span class="hljs-number">39997</span>,
+        <span class="hljs-attr">&quot;subscription&quot;</span>: <span class="hljs-string">&quot;free&quot;</span>,
+        <span class="hljs-attr">&quot;role&quot;</span>: <span class="hljs-string">&quot;customer&quot;</span>,
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+        <span class="hljs-attr">&quot;fav_phrases&quot;</span>: [
+            {
+                <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+                <span class="hljs-attr">&quot;category_id&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+                <span class="hljs-attr">&quot;body&quot;</span>: <span class="hljs-string">&quot;So, in a typical week how often do you go out to the pub would you say?&quot;</span>,
+                <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-08-10T17:56:49.297Z&quot;</span>,
+                <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-08-30T09:48:17.724Z&quot;</span>
+            }
+        ],
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;App user 1&quot;</span>,
+        <span class="hljs-attr">&quot;email&quot;</span>: <span class="hljs-string">&quot;appuser@gmail.com&quot;</span>,
+        <span class="hljs-attr">&quot;last_active&quot;</span>: <span class="hljs-string">&quot;2020-08-30T10:56:21.990Z&quot;</span>,
+        <span class="hljs-attr">&quot;password&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+        <span class="hljs-attr">&quot;grade&quot;</span>: <span class="hljs-string">&quot;5&quot;</span>,
+        <span class="hljs-attr">&quot;speciality&quot;</span>: <span class="hljs-string">&quot;Internal Medicine&quot;</span>,
+        <span class="hljs-attr">&quot;tts_accent&quot;</span>: {
+            <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;English - United Kingdom&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;en-GB&quot;</span>
+        },
+        <span class="hljs-attr">&quot;secret&quot;</span>: {
+            <span class="hljs-attr">&quot;ascii&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>,
+            <span class="hljs-attr">&quot;otpauth_url&quot;</span>: <span class="hljs-string">&quot;******&quot;</span>
+        },
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-08-05T11:53:12.213Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-08-30T10:56:22.945Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">495</span>
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Get all the stored information about a specific user.</p>
+            <aside class="notice"> This will also retrieve all the user's favorite Phrases. </aside>
+            <p>In order for a request to be successful, a <strong>valid stored user id</strong> must be added as a parameter.</p>
+            <p>Each user is stored and sent back as an object type.</p>
+            <h2 id="update-a-specific-user">Update a specific user</h2>
+            <blockquote>
+               <p>PUT /users/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;John Doe&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! User updated&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+    }
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>There are <strong>2 ways</strong> a user can be updated:</p>
+            <ol>
+               <li>By being <strong>logged in as himself</strong> and updating its own information</li>
+               <li>Information is being updated <strong>by an Admin</strong></li>
+            </ol>
+            <p>Each field can be updated individually so it is only necessary to be passed a single field in order for a user to be updated.</p>
+            <aside class="notice"> Fields sent in the updated body must comply with all the Validation rules set in the Model. </aside>
+            <p>In order for a request to be successful, a <strong>valid stored user id</strong> must be added as a parameter.</p>
+            <p>To add or remove a phrase from favorites, jump to <a href="">this chapter</a>.</p>
+            <h2 id="delete-a-specific-user">Delete a specific user</h2>
+            <blockquote>
+               <p>DELETE /users/:id</p>
+            </blockquote>
+            <pre class="highlight json"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! User deleted!&quot;</span>
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Deleting a specific user means that the record associated to that <strong>user id</strong> will be <strong>forever</strong> deleted from the database.</p>
+            <p>With this action, <strong>all the saved favorite Phrases will be deleted</strong>.</p>
+            <p>If the user is <strong>currently logged in</strong>, first, the session stored in the database is deleted and only then the whole user object.</p>
+            <p>In order for a request to be successful, a <strong>valid stored user id</strong> must be added as a parameter.</p>
+            <p><strong>Any logged in admin</strong> is also empowered to delete all the information about any user.</p>
+            <h1 id="categories">Categories</h1>
+            <h2 id="category-model">Category Model</h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Field</th>
+                     <th>Data Type</th>
+                     <th>Required</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>_id</code></td>
+                     <td>ID</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>title</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>subscription</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>conversation_image</code></td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>conversation_audio</code></td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><code>conversation_body</code></td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><strong>title</strong> must be unique.</p>
+            <h3 id="subscription-enum">subscription enum</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Value</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>free</code></td>
+                  </tr>
+                  <tr>
+                     <td><code>premium</code></td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><code>DEFAULT: &#39;free&#39;</code></p>
+            <h2 id="create-a-new-category">Create a new category</h2>
+            <blockquote>
+               <p>POST /categories/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>formdata
+
+name: &#x27;Test Category&#x27;
+subscription: &#x27;Premium&#x27;
+conversation_body: &#x27;Conversation text for this category&#x27;
+conversation_image: hello.jpg
+conversation_audio: test.mp3</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! New Category Created&quot;</span>,
+    <span class="hljs-attr">&quot;category&quot;</span>: {
+        <span class="hljs-attr">&quot;subscription&quot;</span>: <span class="hljs-string">&quot;premium&quot;</span>,
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f692204acf8ec2c708e250f&quot;</span>,
+        <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;Test Category&quot;</span>,
+        <span class="hljs-attr">&quot;conversation_body&quot;</span>: <span class="hljs-string">&quot;Conversation text for this category&quot;</span>,
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T21:58:28.692Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T21:58:28.692Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Categories can be created using a <code>POST</code> request with a body that contains the required fields. They are the main way of filtering the newly created phrases.</p>
+            <p>Since there are 2 types of customers <strong>free</strong> &amp; <strong>premium</strong>, the categories can be accessed by either one of them depending on the preference of the Admin. <code>Free</code> means being accessed by everyone and <code>premium</code> can only be accessed by the paid users.</p>
+            <p>If a category is <code>premium</code> all the phrases associated with it are by definition premium as well.</p>
+            <p>Each category has an <code>optional</code> <strong>conversation</strong> associated to it. A conversation is formed of an image, and audio file and written transcript. Therefore, <code>conversation_audio</code> &amp; <code>conversation_body</code> are fields that accept a file.</p>
+            <p><strong>Validation</strong></p>
+            <h3 id="category">Category</h3>
+            <p><code>title</code> - <strong>unique</strong> <br><code>subscription</code> - enum value <br><code>conversation_audio</code> - Audio formats: <strong>mpeg</strong>, <strong>ogg</strong>, <strong>wav</strong>, <strong>x-metroska</strong>, <strong>mp4</strong>, max file size: <strong>50 mb</strong> <br><code>conversation_image</code> - Image formats: <strong>jpg</strong>, <strong>gif</strong>, <strong>png</strong>, max file size: <strong>5 mb</strong></p>
+            <p>All the files are store in <code>/upload</code> using a naming convention: <code>conversation_audio-randomID</code> or <code>conversation_image-randomID</code></p>
+            <h2 id="get-all-categories">Get all categories</h2>
+            <blockquote>
+               <p>GET /categories/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Categories fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;categories&quot;</span>: [
+        {},
+        {},
+        {}
+    ]
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Query to retrieve all the categories stored in the database.</p>
+            <p>The results are sent as an array of objects.</p>
+            <aside class="notice"> This query does not retrieve the phrases associated with the categories. </aside>
+            <h2 id="get-a-specific-category">Get a specific category</h2>
+            <blockquote>
+               <p>GET /categories/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Category fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;category&quot;</span>: {
+        <span class="hljs-attr">&quot;subscription&quot;</span>: <span class="hljs-string">&quot;premium&quot;</span>,
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f692204acf8ec2c708e250f&quot;</span>,
+        <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;Test Category&quot;</span>,
+        <span class="hljs-attr">&quot;conversation_body&quot;</span>: <span class="hljs-string">&quot;Conversation text for this category&quot;</span>,
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T21:58:28.692Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T21:58:28.692Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Query to retrieve a specific category from the database.</p>
+            <p>The result is sent as an object.</p>
+            <p>The <strong>id</strong> parameter in the URL must be a valid existing <strong>id</strong>, otherwise an explicit error will be thrown.</p>
+            <aside class="notice"> This query does not retrieve the phrases associated with the category. </aside>
+            <h2 id="update-a-specific-category">Update a specific category</h2>
+            <blockquote>
+               <p>PUT /categories/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>formdata
+
+subscription: &#x27;free&#x27;</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Category updated&quot;</span>,
+    <span class="hljs-attr">&quot;category&quot;</span>: {
+        <span class="hljs-attr">&quot;subscription&quot;</span>: <span class="hljs-string">&quot;free&quot;</span>,
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f692204acf8ec2c708e250f&quot;</span>,
+        <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;Test Category&quot;</span>,
+        <span class="hljs-attr">&quot;conversation_body&quot;</span>: <span class="hljs-string">&quot;Conversation text for this category&quot;</span>,
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T21:58:28.692Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T22:17:37.414Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Using a <code>PUT</code> request each category can be updated. All the fields are checked individually, and there is no need to pass an entire category inside of the body, just the updated fields.</p>
+            <p>The <strong>id</strong> parameter in the URL must be a valid existing <strong>id</strong>, otherwise an explicit error will be sent back.</p>
+            <p>In the case where a file is updated by an Admin, (i.e. conversation_image, conversation_audio), the system first searches for that specific file in the <code>/uploads</code> folder, deletes the record, adds the new file with the new name and updates the database with the new path. This way the old files won&#39;t occupy unnecessary server space.</p>
+            <p>All updated fields sent in the body must comply with the Validation rules set in the Model / Controller.</p>
+            <p><strong>Validation</strong></p>
+            <p><code>title</code> - <strong>unique</strong> <br><code>subscription</code> - enum value <br><code>conversation_audio</code> - Audio formats: <strong>mpeg</strong>, <strong>ogg</strong>, <strong>wav</strong>, <strong>x-metroska</strong>, <strong>mp4</strong>, max file size: <strong>50 mb</strong> <br><code>conversation_image</code> - Image formats: <strong>jpg</strong>, <strong>gif</strong>, <strong>png</strong>, max file size: <strong>5 mb</strong></p>
+            <h2 id="delete-a-specific-category">Delete a specific category</h2>
+            <blockquote>
+               <p>DELETE /category/:id</p>
+            </blockquote>
+            <pre class="highlight json"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Category deleted &amp; all the corresponding phrases.&quot;</span>
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Deleting a specific category means that the record associated to that <strong>category id</strong> will be <strong>forever</strong> deleted from the database.</p>
+            <p>With this action, <strong>all the phrases</strong> associated with that category are deleted.</p>
+            <p>Also, <strong>all the files in the <code>/uploads</code></strong> associated with that category are deleted.</p>
+            <p>In order for a request to be successful, a <strong>valid stored user id</strong> must be added as a parameter.</p>
+            <h1 id="phrases">Phrases</h1>
+            <h2 id="phrase-model">Phrase Model</h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Field</th>
+                     <th>Data Type</th>
+                     <th>Required</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>_id</code></td>
+                     <td>ID</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>category_id</code></td>
+                     <td>ID</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>body</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="create-a-new-phrase">Create a new phrase</h2>
+            <blockquote>
+               <p>POST /phrases/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    &quot;category_id&quot;: &quot;5f0ef4250856267a36ecab32&quot;,
+    &quot;body: &quot;Phrase 1 from category 1&quot;
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! New phrase created&quot;</span>,
+    <span class="hljs-attr">&quot;phrase&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f6939c6acf8ec2c708e2510&quot;</span>,
+        <span class="hljs-attr">&quot;category_id&quot;</span>: <span class="hljs-string">&quot;5f327d86cc3d4a7aec85c939&quot;</span>,
+        <span class="hljs-attr">&quot;body&quot;</span>: <span class="hljs-string">&quot;Phrase 2 from category 1&quot;</span>,
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T23:39:50.033Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T23:39:50.033Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p>Although the structure is very simplistic, a phrase is the core piece of content inside the Comms4Docs API.</p>
+            <p>To create a phrase it is only necessary to pass a <code>body</code> inside the <code>POST</code> request and a <strong>valid</strong> <code>category_id</code> which will be associated to.</p>
+            <p><strong>Validation</strong></p>
+            <p>In the case of phrases, the validation is formed only from the types of fields passed.</p>
+            <p><code>category_id</code> - <strong>unique &amp; valid</strong> <br><code>body</code> - String</p>
+            <h2 id="get-all-phrases">Get all phrases</h2>
+            <blockquote>
+               <p>GET /phrases/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! All Phrases fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;phrases&quot;</span>: [
+        {},
+        {},
+        {}
+    ]
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>This query will retrieve all the phrases in the database in no particular order. This is a good method of keeping track of the number of the total phrases in the system, however it is <strong>not recommended</strong> to heavily use this query as it is memory heavy.</p>
+            <p>The results are sent as an array of objects.</p>
+            <aside class="notice"> This query retrieves all the phrases, not the categories they are part of. </aside>
+            <h2 id="get-all-phrases-by-category">Get all phrases by category</h2>
+            <blockquote>
+               <p>GET /phrases/category/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Phrases by category fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;phrases&quot;</span>: [
+        {},
+        {},
+        {}
+    ]
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>This is the main way of consuming the phrases based on their category.</p>
+            <p>Once the category id is known, all the phrases in that category can be queried and used in a client.</p>
+            <p>The <strong>id</strong> parameter in the URL must be a valid existing <strong>category_id</strong>, otherwise an explicit error will be thrown.</p>
+            <aside class="notice"> The results are accessible by any type of user, free or premium. It is in the duty of the client to sort them based on the logged in user type. </aside>
+            <h2 id="get-a-specific-phrase">Get a specific phrase</h2>
+            <blockquote>
+               <p>GET /phrases/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Single Phrase fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;phrase&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f318a41cc3d4a7aec85c91c&quot;</span>,
+        <span class="hljs-attr">&quot;category_id&quot;</span>: <span class="hljs-string">&quot;5f31775ecc3d4a7aec85c8df&quot;</span>,
+        <span class="hljs-attr">&quot;body&quot;</span>: <span class="hljs-string">&quot;Do you drink at all?&quot;</span>,
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-08-10T17:56:17.900Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-08-10T17:56:17.900Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Simple query to retrieve all the information about a single phrase. This might me useful in a scenario where a phrase has its own client-side display page.</p>
+            <p>A <code>category_id</code> is not needed, just the <code>_id</code> of the actual phrase.</p>
+            <p>The <strong>id</strong> parameter in the URL must be associated to valid existing <strong>phrase</strong>, otherwise an explicit error will be thrown.</p>
+            <aside class="notice"> The phrase queried might be part of a premium category and it is in the duty of the client to check the logged in user type. </aside>
+            <h2 id="add-a-phrase-to-favorites">Add a phrase to favorites</h2>
+            <blockquote>
+               <p>PUT /users/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;add_fav_phrase&quot;</span>: <span class="hljs-string">&quot;5f32bc4fcc3d4a7aec85c94b&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! User updated&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+    }
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Adding a Phrase to favorites is actually part of the updating a <code>User</code> process.</p>
+            <p>When a new user creates an account, a field called <code>fav_phrases</code> is automatically created and consists of an empty array.</p>
+            <p>The process of adding a Phrase to favorites is nothing else then just adding phrases objects to the said array.</p>
+            <aside class="notice"> Since the user is already logged in, all the favorite phrases are accessible through the check-session query. You can read more about this <a href="/#authenticate-a-user">here</a>. </aside>
+            <p>In order to have a 200 response, <strong>both ids</strong> must be valid and exiting user/phrase ids. Otherwise, an error will be sent back.</p>
+            <h2 id="remove-a-phrase-from-favorites">Remove a phrase from favorites</h2>
+            <blockquote>
+               <p>PUT /users/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;rm_fav_phrase&quot;</span>: <span class="hljs-string">&quot;5f32bc4fcc3d4a7aec85c94b&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! User updated&quot;</span>,
+    <span class="hljs-attr">&quot;user&quot;</span>: {
+    }
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Removing a phrase from the favorites is exact same process as adding to favorites, but in reverse.</p>
+            <p>A <code>PUT</code> request with the logged in user id as <code>parameter</code> is necessary to perform a phrase remove from favorites, which will update the specific user array of favorite phrases.</p>
+            <p>You can read a more in depth explanation <a href="/#add-a-phrase-to-favorites">here</a></p>
+            <h2 id="update-a-specific-phrase">Update a specific phrase</h2>
+            <blockquote>
+               <p>PUT /phrases/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;body&quot;</span>: <span class="hljs-string">&quot;Updated phrase body&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Phrase updated&quot;</span>,
+    <span class="hljs-attr">&quot;phrase&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f6939c6acf8ec2c708e2510&quot;</span>,
+        <span class="hljs-attr">&quot;category_id&quot;</span>: <span class="hljs-string">&quot;5f327d86cc3d4a7aec85c939&quot;</span>,
+        <span class="hljs-attr">&quot;body&quot;</span>: <span class="hljs-string">&quot;Updated phrase content&quot;</span>,
+        <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2020-09-21T23:39:50.033Z&quot;</span>,
+        <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;2020-09-22T03:01:37.397Z&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>This query updates the body of a phrase.</p>
+            <p>It is an action that can only be performed by admin users as it is main core piece of the content.</p>
+            <p>The <strong>id</strong> parameter in the URL must be associated to valid existing <strong>phrase</strong>, otherwise an explicit error will be thrown.</p>
+            <h2 id="delete-a-specific-phrase">Delete a specific phrase</h2>
+            <blockquote>
+               <p>DELETE /phrases/:id</p>
+            </blockquote>
+            <pre class="highlight json"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Phrase deleted.&quot;</span>
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Deleting a specific phrase means that the record associated to that <strong>phrase_id</strong> will be <strong>forever</strong> deleted from the database.</p>
+            <p>This also means that the phrase will be deleted from the category that it is a part from.</p>
+            <p>In order for a request to be successful, a <strong>valid stored user id</strong> must be added as a parameter.</p>
+            <h1 id="faqs">FAQs</h1>
+            <h2 id="faq-model">FAQ Model</h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Field</th>
+                     <th>Data Type</th>
+                     <th>Required</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>_id</code></td>
+                     <td>ID</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>question</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+                  <tr>
+                     <td><code>answer</code></td>
+                     <td>String</td>
+                     <td>✔️</td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><strong>Validation</strong> rules are only set by the field types and no other additional rules are set.</p>
+            <h2 id="create-a-new-question">Create a new question</h2>
+            <blockquote>
+               <p>POST /faqs/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;question&quot;</span>: <span class="hljs-string">&quot;How frequently is the content updated?&quot;</span>,
+    <span class="hljs-attr">&quot;answer&quot;</span>: <span class="hljs-string">&quot;Weekly&quot;</span>
+}</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! New question created.&quot;</span>,
+    <span class="hljs-attr">&quot;question&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f696c4988e1d24316ba64af&quot;</span>,
+        <span class="hljs-attr">&quot;question&quot;</span>: <span class="hljs-string">&quot;How frequently is the content updated?&quot;</span>,
+        <span class="hljs-attr">&quot;answer&quot;</span>: <span class="hljs-string">&quot;Weekly&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p><code>FAQs</code> or <code>Frequently Asked Questions</code> are a list of posts meant to help the users from the clients understand the platform better without the contacting the Admin.</p>
+            <p>To add <code>question</code>, a simple <code>POST</code> request containing the question and the answer will suffice.</p>
+            <p>For a successful request, valid strings must be passed.</p>
+            <h2 id="get-all-the-questions">Get all the questions</h2>
+            <blockquote>
+               <p>GET /faqs/</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Questions and Answers fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;questions&quot;</span>: [
+        {},
+        {},
+        {}
+    ]
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>Using this query, a client will be able to show all the FAQs to the customers.</p>
+            <p>The results are sent as an array of objects.</p>
+            <h2 id="get-a-specific-question">Get a specific question</h2>
+            <blockquote>
+               <p>GET /faqs/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Question fetched!&quot;</span>,
+    <span class="hljs-attr">&quot;question&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f2ed413cc3d4a7aec85c8d5&quot;</span>,
+        <span class="hljs-attr">&quot;question&quot;</span>: <span class="hljs-string">&quot;Test question 1?&quot;</span>,
+        <span class="hljs-attr">&quot;answer&quot;</span>: <span class="hljs-string">&quot;Test answer 1.&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: User</code></p>
+            <p>This query can retrieve each question individually, as an object.</p>
+            <p>This can be useful if the client&#39;s functionality requires a personalised page for each question.</p>
+            <h2 id="update-a-specific-question">Update a specific question</h2>
+            <blockquote>
+               <p>PUT /faqs/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    &quot;question&quot;: &quot;Updated question?&quot;
+}
+
+&gt; response
+
+```JSON
+{
+    &quot;message&quot;: &quot;Success! Question updated&quot;,
+    &quot;question&quot;: {
+        &quot;_id&quot;: &quot;5f2ed413cc3d4a7aec85c8d5&quot;,
+        &quot;question&quot;: &quot;Updated question?&quot;,
+        &quot;answer&quot;: &quot;Test answer 1.&quot;,
+        &quot;__v&quot;: 0
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>An FAQ can be updated using a <code>PUT</code> request.</p>
+            <p>The body sent can be either <code>question</code> or <code>answer</code> or <strong>both</strong> if updating both the question and the answer. Passing them separately, will update only that value.</p>
+            <h2 id="delete-a-specific-question">Delete a specific question</h2>
+            <blockquote>
+               <p>DELETE /faqs/:id</p>
+            </blockquote>
+            <pre class="highlight JSON"><code>{
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;Success! Question deleted!&quot;</span>,
+    <span class="hljs-attr">&quot;question&quot;</span>: {
+        <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;5f2ed413cc3d4a7aec85c8d5&quot;</span>,
+        <span class="hljs-attr">&quot;question&quot;</span>: <span class="hljs-string">&quot;Updated questoin?&quot;</span>,
+        <span class="hljs-attr">&quot;answer&quot;</span>: <span class="hljs-string">&quot;Test answer 1.&quot;</span>,
+        <span class="hljs-attr">&quot;__v&quot;</span>: <span class="hljs-number">0</span>
+    }
+}</code></pre>
+            <p><code>Access: Admin</code></p>
+            <p>Deleting a question will <strong>permanently</strong> remove the record of the question from the database.</p>
+            <p>A successful <code>DELETE</code> request implies removing both the question and the answer.</p>
+            <p>The <strong>id</strong> parameter in the URL must be a valid existing <strong>faqs_id</strong>, otherwise an explicit error will be thrown.</p>
+            <h1 id="errors">Errors</h1>
+            <p>The Comms4Docs API uses the following error codes:</p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Code</th>
                      <th>Meaning</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td>400</td>
-                     <td>Bad Request -- The request could not be understood by the server due to malformed syntax.</td>
-                  </tr>
-                  <tr>
                      <td>401</td>
-                     <td>Unauthorized -- Your API key is wrong.</td>
-                  </tr>
-                  <tr>
-                     <td>403</td>
-                     <td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+                     <td>Unauthorized - You are not logged in as Admin.</td>
                   </tr>
                   <tr>
                      <td>404</td>
-                     <td>Not Found -- The specified kitten could not be found.</td>
-                  </tr>
-                  <tr>
-                     <td>405</td>
-                     <td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-                  </tr>
-                  <tr>
-                     <td>406</td>
-                     <td>Not Acceptable -- You requested a format that isn&#39;t JSON.</td>
-                  </tr>
-                  <tr>
-                     <td>410</td>
-                     <td>Gone -- The kitten requested has been removed from our servers.</td>
-                  </tr>
-                  <tr>
-                     <td>418</td>
-                     <td>I&#39;m a teapot.</td>
+                     <td>Not Found -- The specified URL could not be found.</td>
                   </tr>
                   <tr>
                      <td>429</td>
-                     <td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+                     <td>Too Many Requests</td>
                   </tr>
                   <tr>
                      <td>500</td>
-                     <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-                  </tr>
-                  <tr>
-                     <td>503</td>
-                     <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+                     <td>Internal Server Error</td>
                   </tr>
                </tbody>
             </table>
          </div>
          <div class=dark-box>
             <div class=lang-selector>
-               <a href=# data-language-name="bash">bash</a>
-               <a href=# data-language-name="ruby">ruby</a>
-               <a href=# data-language-name="python">python</a>
-               <a href=# data-language-name="javascript">javascript</a>
             </div>
          </div>
       </div>
