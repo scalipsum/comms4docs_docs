@@ -129,6 +129,7 @@ The body sent can be either `question` or `answer` or **both** if updating both 
         "__v": 0
     }
 }
+```
 
 `Access: Admin`
 
@@ -137,4 +138,3 @@ Deleting a question will **permanently** remove the record of the question from 
 A successful `DELETE` request implies removing both the question and the answer.
 
 The **id** parameter in the URL must be a valid existing **faqs_id**, otherwise an explicit error will be thrown.
-```
